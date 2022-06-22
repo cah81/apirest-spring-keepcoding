@@ -26,13 +26,24 @@ public class Cliente implements Serializable{  //cuando tiene la palabra impleme
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  // se usa para volver el id autoincremental
 	private long id;
 	//se puede pasar de la siguiente manera para el nombre de columnas
-	@Column(name = "nombre")//el column sirve para cambiar el nombre de la columna
+	//el column sirve para cambiar el nombre de la columna
+	@Column(nullable = false)  //no deja pasar el campo en blanco a la bd
 	private String nombre;//afecta el @column afecta a la siguiente linea de codigo
+	@Column(nullable = false)//este campo lo dejamos igual para no pasar en blanco
 	private String apellido;
+	@Column(nullable =false,unique =true) //no deja registrar dos correos iguales y tampoco en blanco
 	private String email;
 	private int telefono;
 	@Column(name ="create_at") //en la base de datos se cambiaria a este nombre
-	private Date createAt;
+	private Date createAt;//este es el campo de la fecha
+	
+	//para poder subir imagenes
+	//se crean los setters and getters
+	//crear la carpeta uploads
+	//luego nos vamos al controlador
+	//en el controler se hace el postmapping con la revision de errores
+	private String imagen;
+	
 	
 	
 	//para que funciones completamente como entity es obligatorio que tenga
@@ -74,8 +85,19 @@ public class Cliente implements Serializable{  //cuando tiene la palabra impleme
 		this.createAt = createAt;
 	}
 	
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+
+
+	
 }
